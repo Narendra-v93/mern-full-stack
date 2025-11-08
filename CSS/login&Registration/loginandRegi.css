@@ -1,5 +1,5 @@
-#body{
-    background-color: #560aee;
+body{
+    background-color: blue;
     
   
 }
@@ -14,7 +14,7 @@
   padding: 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 5px 0px rgb(12, 12, 12);
-  background-color: rgba(252, 253, 250, 0.946);
+  background-color: rgba(241, 240, 246, 0.946);
 }
 #formHeading {
   color: rgb(20, 20, 22);

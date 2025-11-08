@@ -1,0 +1,97 @@
+
+body{
+    background-color: blue;
+}
+#mainBox{
+    background-color:white;
+    border-radius: 10px;
+    width: 500px;
+    height: 500px;
+    margin: 20px auto;
+    padding: 10px;
+
+}
+#headingForm span{
+
+  text-decoration: underline;
+  text-decoration-color: blue;
+
+
+}
+
+
+
+#loginFrom{
+  padding: 40px 35px;
+ 
+    
+}
+.formFeild{
+   position: relative;
+    display: flex;
+  margin-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+
+    label{
+      background-color: white;
+      margin-right: 8px;
+      font-size: 18px;
+    }
+     
+
+input{
+   width: 100%;
+   padding: 10px;
+   border: none;
+   border-bottom: 2px solid black;
+   outline: none;
+   font-size: 15px;
+   background: transparent;
+    }
+}
+.eye{
+  right: 5px;
+  font-size: 18px;
+  color: gray;
+}
+.options{
+  justify-content: space-between;
+  font-size: large;
+  
+  margin-bottom: 20px;
+  a{
+    font-size: large;
+    align-items: left;
+    color: blue;
+    text-decoration: none;
+  }
+}
+.options a:hover{
+  text-decoration: underline;
+}
+
+.btn{
+  width: 100%;
+  background-color: blue;
+  border: none;
+  color: white;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 5px;
+
+}
+.btn:hover{
+  border: 1px solid #007816;
+  background-color: #3c7847;
+  color: aliceblue;
+}
+.Signup{
+  text-align: center;
+  margin-top: 15px;
+  font-size: 18px;
+  a{
+    color: blue;
+    text-decoration: none;
+  }
+
+}
