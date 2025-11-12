@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+#box{
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    position: absolute;
+    animation: moving 10s linear infinite;
+}
+
+
+@keyframes moving{
+   0%{
+    top: 0px;
+    left: 0px;
+
+    background-color: aqua;
+    }
+
+    25%{
+    top: 0px;
+    left: 500px;
+
+    background-color: blue;
+    }
+
+
+    50%{
+    top: 500px;
+    left: 500px;
+    background-color: blueviolet;
+    }
+
+
+    75%{
+    top: 500px;
+    left: 0px;
+    background-color: black;
+    }
+
+    100%{
+    top: 0px;
+    left: 0px;
+    background-color: aqua;
+    }
+
+}
