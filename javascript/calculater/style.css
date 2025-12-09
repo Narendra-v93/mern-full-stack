@@ -1,0 +1,74 @@
+body{
+    background-color: skyblue;
+}
+
+
+
+.container {
+    background-color: black;
+  width: 500px;
+  height: auto;
+  border: 2px solid #000;
+  margin: 50px auto;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  
+}
+
+input {
+  width: 500px;
+  height: 80px;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: xx-large;
+  
+}
+
+
+.allbuttons {
+  display: grid;
+  grid-template-columns: 100px 100px 100px auto;
+  grid-template-rows: 100px 100px 100px 100px ;
+  gap: 10px;
+
+}
+
+.btn {
+  background: rgb(116, 238, 116);
+  color: rgb(14, 11, 11);
+  font-size: xx-large;
+  border-radius: 7px;
+}
+
+#cancel {
+  background: rgb(85, 240, 137);
+  color: rgb(251, 248, 248);
+
+ 
+}
+
+#equal{
+    background: rgb(104, 246, 106);
+  color: rgb(246, 243, 243);
+  font-size: xx-large;
+  border-radius: 7px;
+    height: 75px;
+    width: 390px;
+   
+}
+
+button:active{
+    background: rgb(188, 56, 56);
+}
+
+
+#cancel:active{
+    background:rgb(241, 44, 44);
+}

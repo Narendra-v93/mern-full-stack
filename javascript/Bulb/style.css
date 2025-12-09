@@ -1,0 +1,41 @@
+#Bulb{
+    padding: 50px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    width: fit-content;
+    padding-bottom: 20px;
+    margin: 10px;
+}
+
+.color{
+    height: 40px;
+    width: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 50%;
+    cursor: default;
+}
+#c1{
+    background-color: #b19494;
+}
+#c2{
+    background-color: #abf438;
+}
+#c3{
+    background-color: #115007;
+}
+#c4{
+    background-color: #0eb1ed;
+}
+#c5{
+    background-color: #3612ec;
+}
+#c6{
+    background-color: #ee0ea0;
+}
+#c7{
+    background-color: #e50606;
+}
+
