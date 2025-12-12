@@ -1,0 +1,29 @@
+
+body {
+ background-color: rgb(191, 251, 251);
+}
+header {
+  min-height: 10vh;
+}
+main {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inp {
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 2px solid white;
+  width: fit-content;
+  background-color: rgba(255, 255, 255, 0.572);
+}
+
+
+#btn{
+  background-color: rgb(14, 139, 248);
+}
+#btn:hover{
+  background-color: rgb(102, 102, 102);
+}
