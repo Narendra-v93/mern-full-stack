@@ -14,33 +14,21 @@ function submit() {
         alert("Valid name only"); 
         return; 
     }
- if(!nm)
-     { 
-        alert("Enter full name"); 
-        return;
-     }
-       
+     if(!/^[6-9]\d{9}$/.test(ph))
+         { 
+        alert("10-digit mobile");
+         return; 
+        }
+ 
     if(!/^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(em))
      { 
      alert("Valid Gmail only");
      return;
   }
-  if(!em)
-  {
-    alert("Enter email");
-    return;
-  }
-    if(!/^[6-9]\d{9}$/.test(ph))
-         { 
-        alert("10-digit mobile");
-         return; 
-        }
 
-        if(!ph)
-        {
-            alert("Enter mobile number");
-            return;
-        }
+   
+
+        
 
 //  if (!nm) {
 //     document.getElementById("NameError").innerText = "Required";
@@ -106,23 +94,21 @@ function submit() {
          return;
          }
 
-         if(!db)
+         if(!dob)
          {
             alert("Enter DOB");
             return;
          }
 
+        
+
     if(!ct || !/^[a-zA-Z\s]+$/.test(ct)) 
         { 
-        alert("Valid city");
+        alert("Enter city");
          return; 
         }
 
-        if(!ct)
-        {
-            alert("Enter city");
-            return;
-        }
+        
 
 
 
@@ -137,11 +123,7 @@ function submit() {
          return;
          }
 
-         if(!gph)
-         {
-            alert("Enter Guardian number");
-            return;
-         }
+        
 
 {
     const data = {
