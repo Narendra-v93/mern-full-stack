@@ -157,6 +157,11 @@ function submit() {
     console.log(data);
     alert("Submitted: " + JSON.stringify(data, null, 2));
 }
+
+}
+function clearForm(){
+    document.getElementById("regForm").reset();
+
 }
 
 
