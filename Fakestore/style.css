@@ -1,0 +1,26 @@
+
+a:hover{
+    color: orange !important;
+}
+
+
+a:active{
+    color: red !important;
+}
+
+
+
+#home{
+    height: 100vh;
+}
+
+
+.card{
+    height: 500px;
+}
+
+/* ss */
+.card img{
+    height: 300px;
+    width: auto;
+}
