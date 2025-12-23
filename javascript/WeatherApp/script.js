@@ -1,5 +1,6 @@
 async function getWeather() {
-  const city = document.getElementById("city").value.trim();
+  try {
+    const city = document.getElementById("city").value.trim();
   const { lat, lon } = await getGeoLoc(city);
   console.log(lat, lon);
 
@@ -19,10 +20,16 @@ async function getWeather() {
             data.weather[0].icon
           }@4x.png" alt="WeatherIcon" />
   `;
+    
+  } catch (error) {
+    console.log(error.message);
+    
+  }
 }
 
 async function getGeoLoc(City) {
-  console.log(City);
+ try {
+   console.log(City);
   const response = await fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${City}&limit=1&appid=1cefe43006e662107c8d0454bde6852c`
   );
@@ -33,4 +40,9 @@ async function getGeoLoc(City) {
   const lon = data[0].lon;
 
   return { lat, lon };
+  
+ } catch (error) {
+  throw error;
+  
+ }
 }

@@ -1,0 +1,44 @@
+/* 
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+}
+
+#nav{
+    text-decoration: none;
+    
+}
+
+.shirt{
+    width: fit-content;
+    padding: 1px;
+    margin: 1px;
+    font-size: 20px;
+    
+}
+.required{
+    color: red;
+}
+
+
+#btn{
+  padding: 10px 20px;
+  font-size: 20px;
+
+}
+#btn:hover{
+  background-color: rgb(47, 228, 31);
+  color: white;
+  cursor: pointer;
+}
+footer{
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+} */
