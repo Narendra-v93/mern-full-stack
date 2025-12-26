@@ -1,32 +1,48 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
+import { BrowserRouter,Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
+import Product from "./pages/Product";
+
 
 function App() {
-  let a = 5;
-  let b = 10;
+  // let a = 5;
+  // let b = 10;
+  // console.log(a+b);
 
-  console.log(a + b);
   return (
     <>
-      <section id="main">
-        <h1 id="head"><u><i>Hello Guys</i></u></h1>
-      <div id="text">This is my first React App</div>
+      {/* <h1 id="head">
+        <i className="bi bi-airplane-engines-fill"></i> Hello World
+      </h1> */}
 
-      <p id="lorem">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam numquam
-        consequatur et ea blanditiis a maiores, animi rem impedit fuga nisi sint
-        eaque aspernatur nemo delectus, distinctio molestias? Perferendis,
-        expedita! Autem, corporis ipsam laboriosam quisquam eligendi facere
-        magni dignissimos consectetur, obcaecati nihil laudantium velit laborum
-        deserunt excepturi earum, qui consequatur ea fugit delectus? Veniam
-        minima consectetur officiis amet dolores in. Delectus doloribus
-        voluptatem facere? Voluptas maiores possimus quis facere quibusdam
-        consequatur eius unde voluptatem reiciendis repellat iste est, rerum
-        temporibus vel fugit amet autem quas soluta magni omnis? Dolores,
-        eligendi? Ducimus recusandae voluptatibus inventore velit natus nobis ut
-        dolores odio officia explicabo, aliquid ullam accusantium, iste
-        doloremque quis modi veniam nesciunt quibusdam! Perspiciatis veniam
-        nostrum consequatur qui. Architecto, a incidunt.
-      </p></section>
+
+      {/* <div className="bg-primary text-light">This is my first React App</div>
+      <Header />
+      <Home/>
+      <Footer/> */}
+
+
+      <BrowserRouter>
+      <Header/>
+      <Routes>
+      <Route path="/" element={<Home/>} />
+      <Route path="/about" element={<About/>} />
+      <Route path="/product" element={<Product/>} />
+      <Route path="/contact" element={<Contact/>} />
+       </Routes>
+
+
+
+   <Footer/>
+      </BrowserRouter>
     </>
   );
 }
