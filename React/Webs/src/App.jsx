@@ -42,7 +42,7 @@ import { FaHome } from "react-icons/fa";
        
 
 
-   <Footer/>
+     <Footer/>
       </BrowserRouter>
    
    

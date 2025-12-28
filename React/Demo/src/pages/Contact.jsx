@@ -2,8 +2,8 @@ import React from "react";
  const Contact= ()=>{
     return(
         <>
-        <div>
-            Contact
+        <div className="font-bold justify-center">
+            Contact Us
            
         </div>
         </>
