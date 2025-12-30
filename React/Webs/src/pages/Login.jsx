@@ -31,7 +31,7 @@ const Login = () => {
 
     try {
       console.log(LoginData);
-      handleClearForm(); // ✅ success ke baad clear
+      handleClearForm(); 
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -41,9 +41,9 @@ const Login = () => {
 
   return (
     <>
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="bg-white w-full max-w-md p-8 rounded-xl shadow-md">
-        <h1 className="text-3xl font-semibold text-center mb-6 flex items-center gap-1 justify-center">
+    <div className=" flex items-center min-h-screen justify-center">
+      <div className="bg-white  max-w-md p-8 w-full  shadow-md rounded-xl">
+        <h1 className="text-3xl  text-center font-semibold items-center mb-6 flex   justify-center gap-1">
           <SlLogin />
           Login
         </h1>

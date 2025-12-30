@@ -7,6 +7,7 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
+    confirm:"",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -24,6 +25,7 @@ const Signup = () => {
       name: "",
       email: "",
       password: "",
+      confirm:"",
     });
   };
 
@@ -89,6 +91,21 @@ const Signup = () => {
             className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-400 outline-none"
             required
           />
+
+          <label htmlFor="confirm">Confirm Password :</label>
+          <input
+            id="confirm "
+            type="confirm "
+            name="confirm "
+            value={SignupData.confirm}
+            onChange={handleChange}
+            placeholder="Confirm Password"
+            className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-400 outline-none"
+            
+          />
+
+          
+
 
           <div className="flex justify-between pt-4">
             <button

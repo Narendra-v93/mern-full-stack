@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 
 const Contact = () => {
@@ -9,24 +8,49 @@ const Contact = () => {
     city: "",
     subject: "",
     message: "",
+    religion: "",
+    gender: "",
+    skill: [],
   });
 
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.traget;
-    setContactData((previousData) => ({ ...previousData, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      let temp = contactData.skill;
+      if (checked) {
+        temp.push(value);
+        setContactData((previousData) => ({ ...previousData, [name]: temp }));
+      } else {
+        temp = Object.values(temp); //Convert to Array
+        temp = temp.filter((word) => word !== value); //Remove the Undersired Value
+        setContactData((previousData) => ({ ...previousData, [name]: temp }));
+      }
+    } else {
+      setContactData((previousData) => ({ ...previousData, [name]: value }));
+    }
   };
 
-  const handleClearForm = () => {};
+  const handleClearForm = () => {
+    setContactData({
+      fullName: "",
+      email: "",
+      phone: "",
+      city: "",
+      subject: "",
+      message: "",
+      religion: "",
+      gender: "",
+      skill: [],
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch(
-        "https://official-joke-api.appspot.com/jokes/jhbaskdjbf"
-      );
+      console.log(contactData);
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -35,12 +59,16 @@ const Contact = () => {
     handleClearForm();
   };
 
+
   return (
     <>
-      <div className="text-center">
-        <h1 className="font-bold text-2xl" >Contact Us</h1>
+      <div className="flex justify-center">
+        <div className="text-center">
+        <h1 className="font-bold text-2xl " >Contact Us</h1>
+        
         <div className="container">
           <form onReset={handleClearForm} onSubmit={handleSubmit}>
+            <div className="bg-amber-100  max-w-md p-8 w-full  shadow-md rounded-xl">
             <div>
               <label htmlFor="fullName">Full Name :-</label>
               <input
@@ -49,9 +77,11 @@ const Contact = () => {
                 id="fullName"
                 value={contactData.fullName}
                 onChange={handleChange}
+
                 
                 placeholder="Enter your Name"
-                className="text-primary border-2 ml-7 mb-2"
+                 className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-400 outline-none mb-2"
+            required
               />
             </div>
 
@@ -64,7 +94,8 @@ const Contact = () => {
                 value={contactData.email}
                 onChange={handleChange}
                 placeholder="Enter your Email"
-                className="text-primary border-2 ml-10 mb-2"
+                 className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-400 outline-none mb-2 "
+            required
               />
             </div>
 
@@ -77,7 +108,8 @@ const Contact = () => {
                 value={contactData.phone}
                 onChange={handleChange}
                 placeholder="Enter your phone"
-                className="text-primary border-2 ml-8 mb-2"
+                 className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-400 outline-none mb-2"
+            required
               />
             </div>
 
@@ -90,7 +122,8 @@ const Contact = () => {
                 value={contactData.city}
                 onChange={handleChange}
                 placeholder="Enter your city"
-                className="text-primary border-2 ml-15 mb-2"
+                 className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-400 outline-none mb-2"
+            required
               />
             </div>
 
@@ -103,8 +136,115 @@ const Contact = () => {
                 value={contactData.subject}
                 onChange={handleChange}
                 placeholder="Enter your subject"
-                className="text-primary border-2 ml-8 mb-2"
+                 className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-400 outline-none mb-2"
+            required
               />
+            </div>
+
+            <div>
+              <label htmlFor="religion">Religion :-</label>
+              <select
+                name="religion"
+                id="religion"
+                onChange={handleChange}
+                value={contactData.religion}
+                className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-400 outline-none mb-2 ml-2"
+              >
+                <option value="">--Select Religion--</option>
+                <option value="islam">Islam</option>
+                <option value="hinduism">Hinduism</option>
+                <option value="christianity">Christianity</option>
+                <option value="buddhism">Buddhism</option>
+                <option value="jainism">Jainism</option>
+                <option value="sikhism">Sikhism</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="gender">Gender :-</label>
+              <input
+                type="radio"
+                name="gender"
+                value="male"
+                onChange={handleChange}
+                className="ml-2"
+                checked={contactData.gender === "male"}
+              />{" "}
+              Male
+              <input
+                type="radio"
+                name="gender"
+                value="female"
+                onChange={handleChange}
+                checked={contactData.gender === "female"}
+              />{" "}
+              Female
+              <input
+                type="radio"
+                name="gender"
+                value="other"
+                onChange={handleChange}
+                checked={contactData.gender === "other"}
+              />{" "}
+              Other
+            </div>
+
+            <div>
+              <label htmlFor="skill">Skill known :-</label>
+              <input
+                type="checkbox"
+                name="skill"
+                value="html"
+                onChange={handleChange}
+                className="ml-2 mb-2"
+                checked={
+                  Object.values(contactData.skill).find(
+                    (word) => word === "html"
+                  )
+                    ? true
+                    : false
+                }
+              />{" "}
+              HTML
+              <input
+                type="checkbox"
+                name="skill"
+                value="css"
+                onChange={handleChange}
+                checked={
+                  Object.values(contactData.skill).find(
+                    (word) => word === "css"
+                  )
+                    ? true
+                    : false
+                }
+              />{" "}
+              CSS
+              <input
+                type="checkbox"
+                name="skill"
+                value="js"
+                onChange={handleChange}
+                checked={
+                  Object.values(contactData.skill).find(
+                    (word) => word === "js"
+                  )
+                    ? true
+                    : false
+                }
+              />{" "}
+              JS
+              <input
+                type="checkbox"
+                name="skill"
+                value="react"
+                onChange={handleChange}
+                checked={
+                  Object.values(contactData.skill).includes("react")
+                }
+              />{" "}
+              React
             </div>
 
             <div>
@@ -115,20 +255,40 @@ const Contact = () => {
                 value={contactData.message}
                 onChange={handleChange}
                 placeholder="Enter your Message"
-                className="text-primary border-2 ml-3 mb-2"
+                 className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-400 outline-none mb-2"
+            required
               ></textarea>
             </div>
             <div>
-              <button type="reset" className="bg-orange-700 hover:bg-amber-500 border-2 ml-3">
-                Clear Form
-              </button>
-              <button type="submit" className=" bg-green-600 hover:bg-blue-700 border-2 ml-3">
-                {isLoading ? "Loading" : "Submit"}
-              </button>
+               <button
+              type="clear"
+              disabled={isLoading}
+              className={`px-6 py-2 rounded text-white ${
+                isLoading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-red-600 hover:bg-blue-950"
+              }`}
+            >
+              {isLoading ? "Loading..." : "clear"}
+            </button>
+               <button
+              type="submit"
+              disabled={isLoading}
+              className={`px-6 py-2 ml-2 rounded text-white ${
+                isLoading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-800 hover:bg-blue-950"
+              }`}
+            >
+              {isLoading ? "Loading..." : "Submit"}
+            </button>
+            </div>
             </div>
           </form>
         </div>
       </div>
+      </div>
+      
     </>
   );
 };
