@@ -1,15 +1,40 @@
-import React from 'react'
+import React from "react";
+import logo from "../assets/OIP.jpeg"
 
 const Home = () => {
   return (
     <>
+      <div className="bg-origin-border">
+        <h1 className="font-bold text-center text-2xl"> Home Page</h1>
+        <h1 className="font-bold text-center text-4xl"></h1>
 
-   <div className='bg-origin-border'>
-     <h1 className='font-bold text-center text-2xl'> Home Page</h1>
-    <h1 className='font-bold text-center text-4xl'></h1>
-   </div>
+        <div className="flex">
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta
+            numquam dolor rerum sapiente iure iste cum sint. Nesciunt, delectus
+            quo. Fugiat blanditiis a dolorem laudantium quibusdam nam corrupti,
+            doloremque debitis. Blanditiis, exercitationem tempore? Doloremque
+            minima voluptas iure, blanditiis maxime esse odio commodi corrupti
+            mollitia? Perspiciatis natus architecto officia iusto doloremque
+            eos, dolorum, assumenda dicta, blanditiis quibusdam quisquam
+            corrupti a fuga. Rem ratione voluptates modi itaque voluptas amet
+            alias omnis iure facilis. Ea perspiciatis perferendis quidem, eum
+            possimus sunt nihil placeat similique sequi libero incidunt
+            necessitatibus, odit dolorem consequatur distinctio! Molestiae.
+            Velit reprehenderit adipisci maiores vitae neque consectetur cumque
+            doloribus aliquid sequi sed fugiat, molestiae earum magni minus vel
+            qui consequuntur. Unde porro exercitationem quaerat incidunt facere
+            velit dolorum! Optio, repudiandae. Beatae id temporibus recusandae
+            unde, minima nobis facere eius consequuntur itaque architecto rerum
+            ullam, corporis dolore possimus nisi a repudiandae obcaecati nostrum
+            ipsum, illum reiciendis. Dolorem saepe debitis voluptas voluptate.
+          </p>
 
-    {/* <main>
+          <img src={logo} alt="logo" />
+        </div>
+      </div>
+
+      {/* <main>
          <a href="Home.jsx"></a>
             <div class="" >
                 <h1 className='text-center mt-4 text-3xl font-bold'>Welcome to Shopping Moll</h1>
@@ -21,12 +46,8 @@ const Home = () => {
             </div>
         
     </main> */}
-
-
-
-
     </>
-  )
-}
+  );
+};
 
 export default Home;

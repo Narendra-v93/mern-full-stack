@@ -10,6 +10,8 @@ import {Link} from "react-router-dom";
            <Link to={"/about"} >About</Link>
            <Link to={"/product"} >Product</Link>
            <Link to={"/contact"} >Contact</Link>
+           <Link to={"/signup"} >Signup</Link>
+           <Link to={"/login"} >Login</Link>
         </div>
           </div>
         </>

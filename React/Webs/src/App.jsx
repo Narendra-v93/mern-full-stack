@@ -7,6 +7,8 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Product from "./pages/Product";
 import { FaHome } from "react-icons/fa";
+import Login from "./pages/Login";
+import Signup from './pages/Signup';
 
 
 
@@ -37,6 +39,9 @@ import { FaHome } from "react-icons/fa";
       <Route path="/about" element={<About/>} />
       <Route path="/product" element={<Product/>} />
       <Route path="/contact" element={<Contact/>} />
+      <Route path="Login" element={<Login/>}/>
+      <Route path="Signup" element={<Signup/>}/>
+
        </Routes>
 
        
