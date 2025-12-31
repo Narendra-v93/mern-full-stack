@@ -1,6 +1,6 @@
 import React from 'react'
-import { BrowserRouter,Route, Routes } from "react-router-dom";
-import Home from './page/Home';
+import {BrowserRouter,Route,Routes} from "react-router-dom";
+import Form from './pages/Form';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
     <Routes>
       {/* <Route> */}
       
-         <Route path="/" element={<Home/>} />
+         <Route path="/" element={<Form/>} />
       
       {/* </Route> */}
     </Routes>
@@ -18,4 +18,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
