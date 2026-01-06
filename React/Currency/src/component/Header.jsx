@@ -8,11 +8,11 @@ const Header = () => {
   return (
     <>
       <div className="bg-blue-500 px-4 py-2 text-3xl text-white text-center flex justify-center items-center gap-4">
-        <HiCurrencyRupee className="animate-bounce" />
-        <HiMiniCurrencyDollar className="animate-spin"/>
+        <HiCurrencyRupee className="animate-spin" />
+        <HiMiniCurrencyDollar className="animate-ping"/>
         <span className="font-bold">Currency Convertor</span>
         <HiMiniCurrencyEuro className="animate-pulse"/>
-        <HiMiniCurrencyPound className="animate-ping"/>
+        <HiMiniCurrencyPound className="animate-spin"/>
       </div>
     </>
   );
