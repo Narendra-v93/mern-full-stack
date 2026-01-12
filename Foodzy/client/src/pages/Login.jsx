@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import { SlLogin } from "react-icons/sl";
+import imag from "../assets/images.jpeg";
 
 const Login = () => {
   const [LoginData, setLoginData] = useState({
@@ -42,6 +43,7 @@ const Login = () => {
   return (
     <>
     <div className=" flex items-center min-h-screen justify-center">
+      
       <div className="bg-white  max-w-md p-8 w-full  shadow-md rounded-xl">
         <h1 className="text-3xl  text-center font-semibold items-center mb-6 flex   justify-center gap-1">
           <SlLogin />
