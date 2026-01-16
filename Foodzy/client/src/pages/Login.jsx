@@ -1,6 +1,8 @@
 
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { SlLogin } from "react-icons/sl";
+import api from "../config/Api"
 import imag from "../assets/images.jpeg";
 
 const Login = () => {
@@ -30,11 +32,13 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      console.log(LoginData);
+    try { const res = await api.post("/auth/login",LoginData )
+      // console.log(LoginData);
+       toast.success(res.data.message);
       handleClearForm(); 
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
+       toast.error(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -97,7 +101,7 @@ const Login = () => {
                   : "bg-blue-800 hover:bg-blue-950"
               }`}
             >
-              {isLoading ? "Loading..." : "Submit"}
+              {isLoading ? "Loading..." : "Login"}
             </button>
           </div>
 

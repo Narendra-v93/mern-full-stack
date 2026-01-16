@@ -1,12 +1,12 @@
 import React from 'react'
-import imag from "../assets/sp.jpg";
+
 
 const Home = () => {
   return (
     <>
      <div className='relative inline-block' >
       <div>
-        <img src={imag} alt="" className="w-400 h-auto"/>
+        <img src="" alt="" className="w-400 h-auto"/>
       </div>
         <div className='absolute top-5 left-5  bg-opacity-50 text-white font-bold px-4 py-2 rounded'>
           <h1 className="font-bold text-start text-6xl text-black"> Order Your</h1>

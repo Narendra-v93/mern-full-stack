@@ -6,6 +6,8 @@ import connectDB from './src/config/db.js';
 import AuthRouter from "./src/routers/authRouter.js";
 import cors from 'cors';
 import morgan from 'morgan';
+import PublicRouter from './src/routers/publicRouter.js';
+import publicController from './src/routers/publicRouter.js'
 
 const app = express();
 
@@ -25,6 +27,8 @@ app.use((err,req, res, next) => {
     const ErrorMessage = err.message || "Internam Server Error";
     const StatusCode = err.statusCode || 500;
 
+    console.log("Error Found",{ErrorMessage,StatusCode});
+    
     res.status (StatusCode).json({message:ErrorMessage});
 });
 
