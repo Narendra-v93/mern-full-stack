@@ -59,28 +59,30 @@ const Login = () => {
       switch (res.data.data.role) {
         case "customer": {
           setRole("customer");
-          navigate("customer-dashboard");
+          navigate("/customer-dashboard");
           break;
         }
          case "partner": {
           setRole("rider");
-          navigate("rider-dashboard");
+          navigate("/rider-dashboard");
           break;
         }
          case "restaurant": {
           setRole("restaurant");
-          navigate("restaurant-dashboard");
+          navigate("/restaurant-dashboard");
           break;
         }
          case "admin": {
           setRole("admin");
-          navigate("admin-dashboard");
+          navigate("/admin-dashboard");
           break;
         }
+        default: 
+        break;
       }
 
 
-      navigate("/user-dashboard");
+      // navigate("/user-dashboard");
     } catch (error) {
       console.log(error.message);
       toast.error(error?.response?.data?.message || "Something went wrong");

@@ -27,6 +27,7 @@ const Register = () => {
       mobileNumber: "",
       password: "",
       confirmPassword: "",
+      role : "",
     });
   };
 
@@ -72,13 +73,16 @@ const Register = () => {
       return;
     }
 
+    console.log(formData);
+    
+
     try {
       const res = await api.post("/auth/register", formData);
       toast.success(res.data.message);
       handleClearForm();
     } catch (error) {
       console.log(error);
-      toast.error(error.message);
+      toast.error(error?.response?.data?.message || "Unknown Error");
     } finally {
       setIsLoading(false);
     }
@@ -110,21 +114,26 @@ const Register = () => {
                 <div className="space-y-4">
                  <div>
                    <div className="flex items-center justify-between gap-6 mb-4">
-
+                       <label >I am</label>
                     <div className="flex gap-2 mb-2 items-center">
-                          <label >I am</label>
-                      <input type="radio" name="role" id="manager" checked={formData.role === "manager"} onChange={handleChange} />
+                          
+                      <input type="radio" name="role" id="manager" value={"manager"} checked={formData.role === "manager"} onChange={handleChange} />
                       <label htmlFor="manager">Restaurant Manager</label>
                     </div>
                     <div className="flex gap-2 mb-2 items-center">
-                      <input type="radio" name="role" id="partner" checked={formData.role === "partner"} onChange={handleChange} />
+                      <input type="radio" name="role" id="partner" value={"partner"} checked={formData.role === "partner"} onChange={handleChange} />
                       <label htmlFor="partner">Delivery Partner</label>
                     </div>
                     <div className="flex gap-2 mb-2 items-center">
-                      <input type="radio" name="role" id="customer" checked={formData.role === "customer"} onChange={handleChange} />
+                      <input type="radio" name="role" id="customer" value={"customer"} checked={formData.role === "customer"} onChange={handleChange} />
                       <label htmlFor="customer">Customer</label>
                     </div>
                   </div>
+                  {validationError.role && (
+                    <div className="text-xs text-red-500 mb-2">
+                      {validationError.role}
+                    </div>
+                  )}
                  </div>
                   <div>
                     <input

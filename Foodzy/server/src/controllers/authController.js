@@ -16,7 +16,7 @@ export const UserRegister = async (req, res, next) => {
       return next(error);
     }
 
-    console.log( fullName,email,);
+    console.log( fullName,email, mobileNumber,password,role);
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -42,6 +42,7 @@ export const UserRegister = async (req, res, next) => {
       email,
       mobileNumber,
       password: hashPassword,
+      role,
     });
 
     // send response to Frontend
