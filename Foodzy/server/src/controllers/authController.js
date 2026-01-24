@@ -1,15 +1,16 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
+import { genToken } from "../utils/authToken.js";
 
 export const UserRegister = async (req, res, next) => {
   try {
     console.log(req.body);
 
     // accept data from Frontend
-    const { fullName, email, mobileNumber, password } = req.body;
+    const { fullName, email, mobileNumber, password, role, } = req.body;
 
     // verified
-    if (!fullName || !email || !mobileNumber || !password) {
+    if (!fullName || !email || !mobileNumber || !password || !role) {
       const error = new Error("All feilds required");
       error.statusCode = 400;
       return next(error);
@@ -28,9 +29,9 @@ export const UserRegister = async (req, res, next) => {
 
     //encrypt the password
 
-    // const salt = await bcrypt.genSalt(10);                     type 2
-    // const hashPassword = await bcrypt.hash(password,salr);
-    const hashPassword = await bcrypt.hash(password, 10);
+    const salt = await bcrypt.genSalt(10);                     //type 2
+    const hashPassword = await bcrypt.hash(password,salt);
+    // const hashPassword = await bcrypt.hash(password, 10);
 
     console.log("ps hashing done =", hashPassword);
 
@@ -46,7 +47,7 @@ export const UserRegister = async (req, res, next) => {
     // send response to Frontend
 
     console.log(newUser);
-    res.status(201).json({ message: "User Account created Successfully" });
+    res.status(201).json({ message: "Registration Successfully" });
 
     // End
   } catch (error) {
@@ -56,8 +57,10 @@ export const UserRegister = async (req, res, next) => {
 
 export const UserLogin = async (req, res, next) => {
   try {
-    const { fullName, email, mobileNumber, password } = req.body;
+    const {  email, password } = req.body;
 
+    console.log({email,password});
+    
     // verified
     if (!email || !password) {
       const error = new Error("All feilds required");
@@ -67,7 +70,7 @@ export const UserLogin = async (req, res, next) => {
 
     // check if user is register or not
     const existingUser = await User.findOne({ email });
-    if (existingUser) {
+    if (!existingUser) {
       const error = new Error("Email not registered");
       error.statusCode = 401;
       return next(error);
@@ -81,6 +84,16 @@ export const UserLogin = async (req, res, next) => {
       error.statusCode = 401;
       return next(error);
     }
+
+
+
+    // token Genration will be done here
+
+   genToken(existingUser,res);
+
+
+
+
 
     // send message to Frontend
 

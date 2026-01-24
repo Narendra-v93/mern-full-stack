@@ -31,7 +31,7 @@ const Contact = () => {
     setIsLoading(true);
 
     try {
-      const res = await api.post("/public/NewContact", formData);
+      const res = await api.post("/public/newcontact", formData);
       toast.success(res.data.message);
       handleClearForm();
     } catch (error) {

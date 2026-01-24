@@ -3,9 +3,9 @@ import Contact  from "../models/contactModels.js";
 export const NewContact = async (req,resizeBy, next) =>{
     try {
 
-        const {fullName,email,mobiNumber, message} = req.body;
+        const {fullName,email,mobileNumber, message} = req.body;
 
-        if(!fullName || !email || !mobiNumber || !message){
+        if(!fullName || !email || !mobileNumber || !message){
             const error = new Error("All feilds required");
       error.statusCode = 400;
       return next(error);
@@ -14,7 +14,7 @@ export const NewContact = async (req,resizeBy, next) =>{
         const newContact = await Contact.create({
             fullName,
             email,
-            mobiNumber,
+            mobileNumber,
             message,
         });
 

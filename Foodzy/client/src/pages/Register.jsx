@@ -10,6 +10,7 @@ const Register = () => {
     mobileNumber: "",
     password: "",
     confirmPassword: "",
+    role : "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState({});
@@ -52,12 +53,16 @@ const Register = () => {
       Error.mobileNumber = "Only Indian Mobile Number allowed";
     }
 
+    if (!formData.role) {
+      Error.role = "Role is required";
+    }
+
     setValidationError(Error);
 
     return Object.keys(Error).length > 0 ? false : true;
   };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -68,7 +73,7 @@ const Register = () => {
     }
 
     try {
-      const res = await api.post("/auth/register",formData)
+      const res = await api.post("/auth/register", formData);
       toast.success(res.data.message);
       handleClearForm();
     } catch (error) {
@@ -81,7 +86,7 @@ const Register = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-6 px-4">
+      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-6 px-4 w-full h-[90vh]">
         <div className="max-w-xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
@@ -103,6 +108,24 @@ const Register = () => {
               {/* Personal Information */}
               <div className="mb-10">
                 <div className="space-y-4">
+                 <div>
+                   <div className="flex items-center justify-between gap-6 mb-4">
+
+                    <div className="flex gap-2 mb-2 items-center">
+                          <label >I am</label>
+                      <input type="radio" name="role" id="manager" checked={formData.role === "manager"} onChange={handleChange} />
+                      <label htmlFor="manager">Restaurant Manager</label>
+                    </div>
+                    <div className="flex gap-2 mb-2 items-center">
+                      <input type="radio" name="role" id="partner" checked={formData.role === "partner"} onChange={handleChange} />
+                      <label htmlFor="partner">Delivery Partner</label>
+                    </div>
+                    <div className="flex gap-2 mb-2 items-center">
+                      <input type="radio" name="role" id="customer" checked={formData.role === "customer"} onChange={handleChange} />
+                      <label htmlFor="customer">Customer</label>
+                    </div>
+                  </div>
+                 </div>
                   <div>
                     <input
                       type="text"
@@ -111,8 +134,8 @@ const Register = () => {
                       value={formData.fullName}
                       onChange={handleChange}
                       required
-                      disabled = {isLoading}
-                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition focus:cursor-not-allowed"
+                      disabled={isLoading}
+                      className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                     />
                     {validationError.fullName && (
                       <span className="text-xs text-red-500">
@@ -127,8 +150,8 @@ const Register = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    disabled = {isLoading}
-                    className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition focus:cursor-not-allowed"
+                    disabled={isLoading}
+                    className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                   />
                   <input
                     type="tel"
@@ -138,8 +161,8 @@ const Register = () => {
                     value={formData.mobileNumber}
                     onChange={handleChange}
                     required
-                    disabled = {isLoading}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition focus:cursor-not-allowed"
+                    disabled={isLoading}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                   />
                   <input
                     type="password"
@@ -148,8 +171,8 @@ const Register = () => {
                     placeholder="Create Password"
                     onChange={handleChange}
                     required
-                    disabled = {isLoading}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition "
+                    disabled={isLoading}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                   />
                   <input
                     type="password"
@@ -158,43 +181,35 @@ const Register = () => {
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     required
-                    disabled = {isLoading}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition focus:cursor-not-allowed"
-                  />
-                  <input
-                    type="password"
-                    name="password"
+                    disabled={isLoading}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                   />
                 </div>
               </div>
 
-              {/* Submit Button */}
-              <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
-               
-                <button
-                  type="reset"
-                  className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-105"
-                >
-                  Clear Form
-                </button>
-
-                <button
-                  type="submit"
-                  disabled = {isLoading}
-                  className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:scale-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
-                >
-                {isLoading ? "submitting": "Submit"}
-                </button>
-
-
-              </div>
-              <div className="text-blue-800 text-center"><span className="text-red-600 font-bold">Already Created Account</span>
-            <a href="/Login" className="font-bold py-4 px-6  transition duration-300 transform hover:scale-105 decoration-0">Login</a>
+              <div>
+            
+             <a href="/Login" className="text-red-600">Already have an Account<u className="font-bold py-4 px-6  text-blue-800 transition duration-300 transform hover:scale-105">Login</u></a>
           </div>
 
-
-
-            </form>
+              {/* Submit Button */}
+              <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
+              <button
+                  type="reset"
+                  disabled={isLoading}
+                  className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-105 disabled:scale-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                >
+                  Clear Form
+              </button>
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:scale-100 disabled:bg-gray-300  disabled:cursor-not-allowed"
+                >
+                  {isLoading ? "Submitting" : "Submit"}
+                </button>
+            </div>
+          </form>
           </div>
 
           {/* Footer Note */}
@@ -207,4 +222,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Register
