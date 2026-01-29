@@ -3,8 +3,8 @@ import { useAuth } from "../../../context/AuthContext";
 import api from "../../../config/Api";
 
 const EditProfileModal = ({ onClose }) => {
-  const { user, setUser } = useAuth();
-  const [updateData, setUpdateData] = useState({
+  const { user, setUser, setIsLogin } = useAuth();
+  const [formData, setFormData] = useState({
     fullName: user.fullName,
     email: user.email,
     mobileNumber: user.mobileNumber,
@@ -13,13 +13,14 @@ const EditProfileModal = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("form Submitted");
-    console.log(updateData);
+    console.log(formData);
+
     try {
-      const res = await api.put("/user/update", updateData);
+      const res = await api.put("/user/update", formData);
       sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
       setUser(res.data.data);
       setIsLogin(true);
-      
+      // sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
     } catch (error) {
       console.log(error);
     } finally {
@@ -50,9 +51,9 @@ const EditProfileModal = ({ onClose }) => {
                   <input
                     type="text"
                     name="fullName"
-                    value={updateData.fullName}
+                    value={formData.fullName}
                     onChange={(e) =>
-                      setUpdateData({ ...updateData, fullName: e.target.value })
+                      setFormData({ ...formData, fullName: e.target.value })
                     }
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                   />
@@ -64,9 +65,9 @@ const EditProfileModal = ({ onClose }) => {
                   <input
                     type="email"
                     name="email"
-                    value={updateData.email}
+                    value={formData.email}
                     onChange={(e) =>
-                      setUpdateData({ ...updateData, email: e.target.value })
+                      setFormData({ ...formData, email: e.target.value })
                     }
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 cursor-not-allowed "
                     disabled
@@ -79,9 +80,9 @@ const EditProfileModal = ({ onClose }) => {
                   <input
                     type="text"
                     name="mobileNumber"
-                    value={updateData.mobileNumber}
+                    value={formData.mobileNumber}
                     onChange={(e) =>
-                      setUpdateData({ ...updateData, mobileNumber: e.target.value })
+                      setFormData({ ...formData, mobileNumber: e.target.value })
                     }
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                   />

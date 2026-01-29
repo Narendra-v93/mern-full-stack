@@ -10,13 +10,14 @@ const Register = () => {
     mobileNumber: "",
     password: "",
     confirmPassword: "",
-    role : "",
+    role: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -27,7 +28,7 @@ const Register = () => {
       mobileNumber: "",
       password: "",
       confirmPassword: "",
-      role : "",
+      role: "",
     });
   };
 
@@ -44,7 +45,7 @@ const Register = () => {
 
     if (
       !/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(
-        formData.email
+        formData.email,
       )
     ) {
       Error.email = "Use Proper Email Format";
@@ -55,7 +56,7 @@ const Register = () => {
     }
 
     if (!formData.role) {
-      Error.role = "Role is required";
+      Error.role = "Please choose any one";
     }
 
     setValidationError(Error);
@@ -74,7 +75,6 @@ const Register = () => {
     }
 
     console.log(formData);
-    
 
     try {
       const res = await api.post("/auth/register", formData);
@@ -90,7 +90,7 @@ const Register = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-6 px-4 w-full h-[90vh]">
+      <div className="min-h-screen bg-linear-to-br from-blue-50 to-indigo-100 py-6 px-4">
         <div className="max-w-xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
@@ -112,29 +112,49 @@ const Register = () => {
               {/* Personal Information */}
               <div className="mb-10">
                 <div className="space-y-4">
-                 <div>
-                   <div className="flex items-center justify-between gap-6 mb-4">
-                       <label >I am</label>
-                    <div className="flex gap-2 mb-2 items-center">
-                          
-                      <input type="radio" name="role" id="manager" value={"manager"} checked={formData.role === "manager"} onChange={handleChange} />
-                      <label htmlFor="manager">Restaurant Manager</label>
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <label>I am </label>
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="role"
+                          id="manager"
+                          checked={formData.role === "manager"}
+                          value={"manager"}
+                          onChange={handleChange}
+                        />
+                        <label htmlFor="manager">Resturant Manager</label>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="role"
+                          id="partner"
+                          checked={formData.role === "partner"}
+                          value={"partner"}
+                          onChange={handleChange}
+                        />
+                        <label htmlFor="partner">Delivery Partner</label>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="role"
+                          id="customer"
+                          checked={formData.role === "customer"}
+                          value={"customer"}
+                          onChange={handleChange}
+                        />
+                        <label htmlFor="customer">Customer</label>
+                      </div>
                     </div>
-                    <div className="flex gap-2 mb-2 items-center">
-                      <input type="radio" name="role" id="partner" value={"partner"} checked={formData.role === "partner"} onChange={handleChange} />
-                      <label htmlFor="partner">Delivery Partner</label>
-                    </div>
-                    <div className="flex gap-2 mb-2 items-center">
-                      <input type="radio" name="role" id="customer" value={"customer"} checked={formData.role === "customer"} onChange={handleChange} />
-                      <label htmlFor="customer">Customer</label>
-                    </div>
+                    {validationError.role && (
+                      <span className="text-xs text-red-500">
+                        {validationError.role}
+                      </span>
+                    )}
                   </div>
-                  {validationError.role && (
-                    <div className="text-xs text-red-500 mb-2">
-                      {validationError.role}
-                    </div>
-                  )}
-                 </div>
                   <div>
                     <input
                       type="text"
@@ -197,19 +217,24 @@ const Register = () => {
               </div>
 
               <div>
-            
-             <a href="/Login" className="text-red-600">Already have an Account<u className="font-bold py-4 px-6  text-blue-800 transition duration-300 transform hover:scale-105">Login</u></a>
-          </div>
+                Already have an account?{" "}
+                <a
+                  href="/login"
+                  className="font-bold text-indigo-600 hover:underline"
+                >
+                  Login here
+                </a>
+              </div>
 
               {/* Submit Button */}
               <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
-              <button
+                <button
                   type="reset"
                   disabled={isLoading}
                   className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-105 disabled:scale-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
                 >
                   Clear Form
-              </button>
+                </button>
                 <button
                   type="submit"
                   disabled={isLoading}
@@ -217,8 +242,8 @@ const Register = () => {
                 >
                   {isLoading ? "Submitting" : "Submit"}
                 </button>
-            </div>
-          </form>
+              </div>
+            </form>
           </div>
 
           {/* Footer Note */}
@@ -231,4 +256,4 @@ const Register = () => {
   );
 };
 
-export default Register
+export default Register;
