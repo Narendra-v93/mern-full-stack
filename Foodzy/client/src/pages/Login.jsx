@@ -5,11 +5,14 @@ import api from "../config/Api";
 
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import ForgotPasswordModal from "../components/publicModels/ForgotPasswordMadal";
 
 const Login = () => {
   const { setUser, setIsLogin, setRole } = useAuth();
 
   const navigate = useNavigate();
+
+  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
 
   const [LoginData, setLoginData] = useState({
     email: "",
@@ -59,7 +62,7 @@ const Login = () => {
       switch (res.data.data.role) {
         case "customer": {
           setRole("customer");
-          navigate("/customer-dashboard");
+          navigate("/user-dashboard");
           break;
         }
          case "partner": {
@@ -129,12 +132,12 @@ const Login = () => {
               required
             />
             <div className="font-bold py-3 px-6  ">
-              <a href="/signup">
+              <button onClick={() => { e.preventDefault(); setShowForgotPasswordModal(true)}}>
                 Forgot your{" "}
                 <u className="transition duration-300 transform hover:scale-105">
                   password?
                 </u>
-              </a>
+              </button>
             </div>
 
             <div className="flex justify-between pt-4">
@@ -170,6 +173,12 @@ const Login = () => {
           </form>
         </div>
       </div>
+
+      {showForgotPasswordModal && (
+        <ForgotPasswordModal
+          onClose={() => setShowForgotPasswordModal(false)}
+        />
+      )}
     </>
   );
 };

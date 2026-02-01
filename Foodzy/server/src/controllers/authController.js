@@ -1,6 +1,8 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import { genToken } from "../utils/authToken.js";
+import OTP from "../models/otpModel.js";
+import { sendOTPEmail } from "../utils/emailService.js";
 
 export const UserRegister = async (req, res, next) => {
   try {
@@ -102,5 +104,48 @@ export const UserLogout = async (req, res, next) => {
     res.status(200).json({ message: "Logout Successfull" });
   } catch (error) {
     next(error);
+  }
+}
+
+export const UserGenOTP = async (req, res, next) => {
+
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      const error = new Error("Email is required");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      const error = new Error("Email not registered");
+      error.statusCode = 401;
+      return next(error);
+    }
+    //Generate OTP
+    const otp = Math.floor(100000 + Math.random() * 1000000).toString(); 
+    console.log("Generated OTP: ", otp);
+
+    const salt = await bcrypt.genSalt(10);
+    const hashOTP = await bcrypt.hash(otp, salt);
+
+    console.log(hashOTP);
+
+    await OTP.create({
+      email,
+      otp: hashOTP,
+      createdAt: new Date(),
+    })
+
+    await sendOTPEmail(email, otp);
+
+    res.status(200).json({ message: "OTP sent to your email address" });
+    
+    
+  } catch (error) {
+    next(error);
+    
   }
 }
