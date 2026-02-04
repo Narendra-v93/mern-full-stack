@@ -12,7 +12,7 @@ import { Toaster } from "react-hot-toast";
 import UserDashboard from "./pages/dashboards/UserDashboard";
 import AdminDashboard from "./pages/dashboards/AdminDashboard";
 import RiderDashboard from "./pages/dashboards/RiderDashboard";
-import RestaurantDasboard from "./pages/dashboards/RestaurantDashboard";
+import RestaurantDashoard from "./pages/dashboards/RestaurantDashboard";
 
 const App = () => {
   return (
@@ -30,7 +30,7 @@ const App = () => {
           <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/rider-dashboard" element={<RiderDashboard />} />
-          <Route path="/restaurant-dashboard" element={<RestaurantDasboard />} />
+          <Route path="/restaurant-dashboard" element={<RestaurantDashoard />} />
         </Routes>
 
         <Footer />

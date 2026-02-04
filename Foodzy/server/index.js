@@ -8,6 +8,7 @@ import cloudinary from  './src/config/cloudinary.js';
 import cookieParser from 'cookie-parser';
 import PublicRouter from './src/routers/publicRouter.js';
 import UserRouter from './src/routers/userRouter.js'
+import RestaurentRouter from './src/routers/restaurantRouter.js';
 
 
 const app = express();
@@ -20,6 +21,8 @@ app.use(morgan("dev"));
 app.use("/auth", AuthRouter);
 app.use("/public",PublicRouter)
 app.use("/user",UserRouter)
+app.use("/restaurant",RestaurentRouter);
+
 
 app.get("/", (req,res)=>{
     console.log("Server is Working");

@@ -8,11 +8,11 @@ import { useAuth } from "../context/AuthContext";
 import ForgotPasswordModal from "../components/publicModels/ForgotPasswordMadal";
 
 const Login = () => {
-  const { setUser, setIsLogin, setRole } = useAuth();
+  const { user, setUser, role, setIsLogin, setRole } = useAuth();
 
   const navigate = useNavigate();
 
-  const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
+  const [isForgotPasswordModal, setIsForgotPasswordModal] = useState(false);
 
   const [LoginData, setLoginData] = useState({
     email: "",
@@ -61,22 +61,22 @@ const Login = () => {
 
       switch (res.data.data.role) {
         case "customer": {
-          setRole("customer");
+          setRole(user.role);
           navigate("/user-dashboard");
           break;
         }
          case "partner": {
-          setRole("rider");
+          setRole(user.role);
           navigate("/rider-dashboard");
           break;
         }
-         case "restaurant": {
-          setRole("restaurant");
+         case "manager": {
+          setRole(user.role);
           navigate("/restaurant-dashboard");
           break;
         }
          case "admin": {
-          setRole("admin");
+          setRole(user.role);
           navigate("/admin-dashboard");
           break;
         }
@@ -132,12 +132,15 @@ const Login = () => {
               required
             />
             <div className="font-bold py-3 px-6  ">
-              <button onClick={() => { e.preventDefault(); setShowForgotPasswordModal(true)}}>
-                Forgot your{" "}
-                <u className="transition duration-300 transform hover:scale-105">
-                  password?
-                </u>
-              </button>
+              <button
+                    className="text-(--color-primary) hover:text-(--color-secondary) cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsForgotPasswordModal(true);
+                    }}
+                  >
+                    Forget Password?
+                  </button>
             </div>
 
             <div className="flex justify-between pt-4">
@@ -174,9 +177,9 @@ const Login = () => {
         </div>
       </div>
 
-      {showForgotPasswordModal && (
+      {isForgotPasswordModal && (
         <ForgotPasswordModal
-          onClose={() => setShowForgotPasswordModal(false)}
+          onClose={() => setIsForgotPasswordModal(false)}
         />
       )}
     </>

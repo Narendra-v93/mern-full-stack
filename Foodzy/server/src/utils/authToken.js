@@ -5,10 +5,7 @@ export const genToken = (user,res)=> {
 
         const payload = {
             id:user._id,
-            role:user.role || 'admin',
-
-            
-
+            role:user.role,
         }
 
         const token = jwt.sign(payload , process.env.JWT_SECRET,{expiresIn:'1d'})  //1d,24h,60m,60
@@ -29,3 +26,26 @@ export const genToken = (user,res)=> {
         
     }
 }
+
+export const genOtpToken = (user, res) => {
+  try {
+    const payload = {
+      id: user._id,
+      role: user.role,
+    };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "10m",
+    });
+
+    console.log(token);
+
+    res.cookie("otpToken", token, {
+      maxAge: 1000 * 60 * 10,
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+    });
+  } catch (error) {
+    throw error;
+  }
+};
